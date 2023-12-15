@@ -20,6 +20,11 @@ pipeline {
                 echo "doing test stuff.."
                 '''
             }
+            post {
+                always {
+                    allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+                }
+            }
         }
         stage('Deliver') {
             steps {
