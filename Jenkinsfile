@@ -5,7 +5,9 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                cd myApp
+                cd myApp/src/test/java/cucumber_options
+                javac TestNGRunner.java
+                java TestNGRunner
                 '''
             }
         }
