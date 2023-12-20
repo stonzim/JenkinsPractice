@@ -9,25 +9,26 @@ import utils.TestContextSetup;
 
 public class OffersPageSteps {
     TestContextSetup testContextSetup;
-    OffersPage offersPage;
-    String offersPageName;
+    String offersPageFullName;
 
     public OffersPageSteps(TestContextSetup testContextSetup) {
         this.testContextSetup = testContextSetup;
-        offersPage = new OffersPage(this.testContextSetup.driver);
     }
 
     @And("user searches {string} in offers page to extract actual name there as well")
     public void userSearchesInOffersPageToExtractActualNameThereAsWell(String shortName) throws InterruptedException {
-        LandingPage landingPage = new LandingPage(this.testContextSetup.driver);
-        if(!testContextSetup.driver.getCurrentUrl().equals(offersPage.getURL())) landingPage.switchToOffersPage();
+        LandingPage landingPage = testContextSetup.pageObjectFactory.getLandingPage();
+        OffersPage offersPage = testContextSetup.pageObjectFactory.getOffersPage();
+
+        if(!testContextSetup.testBase.WebDriverManager().getCurrentUrl().equals(offersPage.getURL())) landingPage.clickTopDealsLink();
+        testContextSetup.generalTestUtils.switchToChildWindow();
         offersPage.searchFor(shortName);
-        offersPageName = offersPage.getProductName();
+        offersPageFullName = offersPage.getProductName();
     }
 
     @Then("the names extracted from both pages will match")
     public void theNamesExtractedFromBothPagesWillMatch() {
-        Assert.assertEquals(testContextSetup.testVariable, offersPageName);
-        testContextSetup.driver.quit();
+        Assert.assertEquals(testContextSetup.testVariable, offersPageFullName);
+        testContextSetup.testBase.WebDriverManager().quit();
     }
 }

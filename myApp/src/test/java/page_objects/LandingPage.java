@@ -2,8 +2,6 @@ package page_objects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import java.util.Iterator;
-import java.util.Set;
 
 public class LandingPage {
     private final By landingPageSearch_input = By.xpath("//input[@type='search']");
@@ -27,17 +25,7 @@ public class LandingPage {
         return driver.findElement(longName_text).getText().split("-")[0].trim();
     }
 
-    public void switchToOffersPage() {
-        Set<String> windows;
-        Iterator<String> iterator;
-        String parentWindow;
-        String childWindow;
-
+    public void clickTopDealsLink() {
         driver.findElement(offersPage_link).click();
-        windows = driver.getWindowHandles();
-        iterator = windows.iterator();
-        parentWindow = iterator.next();
-        childWindow = iterator.next();
-        driver.switchTo().window(childWindow);
     }
 }
