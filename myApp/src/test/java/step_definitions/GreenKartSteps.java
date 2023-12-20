@@ -60,5 +60,6 @@ public class GreenKartSteps {
     @Then("the names extracted from both pages will match")
     public void theNamesExtractedFromBothPagesWillMatch() {
         Assert.assertEquals(landingPageName, offersPageName);
+        driver.quit();
     }
 }
