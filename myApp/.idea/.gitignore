@@ -3,4 +3,4 @@
 /workspace.xml
 
 # Reports
-../ target/cucumber.*
+../ reports/cucumber.*
