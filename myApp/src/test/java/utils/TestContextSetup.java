@@ -1,6 +1,7 @@
 package utils;
 
 import page_objects.PageObjectFactory;
+import java.io.IOException;
 
 public class TestContextSetup {
     public TestBase testBase;
@@ -8,7 +9,7 @@ public class TestContextSetup {
     public GeneralTestUtils generalTestUtils;
     public String testVariable;
 
-    public TestContextSetup() {
+    public TestContextSetup() throws IOException {
         testBase = new TestBase();
         pageObjectFactory = new PageObjectFactory(testBase.WebDriverManager());
         generalTestUtils = new GeneralTestUtils(testBase.WebDriverManager());

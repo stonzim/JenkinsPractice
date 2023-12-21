@@ -12,9 +12,7 @@ public class LandingPage {
 
     public LandingPage(WebDriver driver) { this.driver = driver; }
 
-    public void goToLandingPage() {
-        String landingPageURL = "https://rahulshettyacademy.com/seleniumPractise/#/";
-        driver.get(landingPageURL); }
+    public String getURL() { return "https://rahulshettyacademy.com/seleniumPractise/#/"; }
 
     public void searchFor(String searchItem) throws InterruptedException {
         driver.findElement(landingPageSearch_input).sendKeys(searchItem);

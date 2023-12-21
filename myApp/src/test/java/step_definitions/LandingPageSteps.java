@@ -2,8 +2,11 @@ package step_definitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import org.testng.asserts.SoftAssert;
 import page_objects.LandingPage;
 import utils.TestContextSetup;
+
+import java.io.IOException;
 
 public class LandingPageSteps {
     TestContextSetup testContextSetup;
@@ -14,9 +17,13 @@ public class LandingPageSteps {
         landingPage = this.testContextSetup.pageObjectFactory.getLandingPage();
     }
 
-    @Given("user goes to GreenKart landing page")
-    public void userGoesToGreenKartLandingPage() {
-        landingPage.goToLandingPage();
+    @Given("user is on GreenKart landing page")
+    public void userIsOnGreenKartLandingPage() throws IOException {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(
+                testContextSetup.testBase.WebDriverManager().getCurrentUrl(), landingPage.getURL()
+        );
+        softAssert.assertAll();
     }
 
     @When("user searches with shortname {string} to extract actual name of product")

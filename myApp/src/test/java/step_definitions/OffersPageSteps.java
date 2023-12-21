@@ -7,6 +7,8 @@ import page_objects.LandingPage;
 import page_objects.OffersPage;
 import utils.TestContextSetup;
 
+import java.io.IOException;
+
 public class OffersPageSteps {
     TestContextSetup testContextSetup;
     String offersPageFullName;
@@ -16,7 +18,7 @@ public class OffersPageSteps {
     }
 
     @And("user searches {string} in offers page to extract actual name there as well")
-    public void userSearchesInOffersPageToExtractActualNameThereAsWell(String shortName) throws InterruptedException {
+    public void userSearchesInOffersPageToExtractActualNameThereAsWell(String shortName) throws InterruptedException, IOException {
         LandingPage landingPage = testContextSetup.pageObjectFactory.getLandingPage();
         OffersPage offersPage = testContextSetup.pageObjectFactory.getOffersPage();
 
@@ -29,6 +31,5 @@ public class OffersPageSteps {
     @Then("the names extracted from both pages will match")
     public void theNamesExtractedFromBothPagesWillMatch() {
         Assert.assertEquals(testContextSetup.testVariable, offersPageFullName);
-        testContextSetup.testBase.WebDriverManager().quit();
     }
 }
