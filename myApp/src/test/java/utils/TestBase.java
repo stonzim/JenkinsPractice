@@ -22,7 +22,12 @@ public class TestBase {
             if(properties.getProperty("browser").equalsIgnoreCase("chrome")) {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--headless");
+//                options.addArguments("--headless");
+                options.addArguments("--window-size=1920,1080");
+                options.addArguments("start-maximized");
+                options.addArguments("enable-automation");
+                options.addArguments("--disable-infobars");
+
                 driver = new ChromeDriver(options);
             }
             driver.get(properties.getProperty("QA-URL"));

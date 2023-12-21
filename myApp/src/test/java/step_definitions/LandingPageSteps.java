@@ -1,11 +1,11 @@
 package step_definitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.testng.asserts.SoftAssert;
 import page_objects.LandingPage;
 import utils.TestContextSetup;
-
 import java.io.IOException;
 
 public class LandingPageSteps {
@@ -26,9 +26,18 @@ public class LandingPageSteps {
         softAssert.assertAll();
     }
 
-    @When("user searches with shortname {string} to extract actual name of product")
+    @When("^user searches with shortname (.+) to extract actual name of product$")
     public void user_searches_with_shortname_to_extract_actual_name_of_product(String shortName) throws InterruptedException {
         landingPage.searchFor(shortName);
         testContextSetup.testVariable = landingPage.getProductName();
+    }
+
+    @And("user adds {int} items to the cart")
+    public void userAddsItemsToTheCart(int numOfItems) {
+
+    }
+
+    @And("user navigates to the checkout page")
+    public void userNavigatesToTheCheckoutPage() {
     }
 }

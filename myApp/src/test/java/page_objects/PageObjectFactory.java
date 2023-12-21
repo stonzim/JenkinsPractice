@@ -9,4 +9,6 @@ public class PageObjectFactory {
     public LandingPage getLandingPage() { return new LandingPage(driver); }
 
     public OffersPage getOffersPage() { return new OffersPage(driver); }
+
+    public CheckoutPage getCheckoutPage() { return new CheckoutPage(driver); }
 }

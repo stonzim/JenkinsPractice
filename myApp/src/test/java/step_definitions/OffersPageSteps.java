@@ -17,7 +17,7 @@ public class OffersPageSteps {
         this.testContextSetup = testContextSetup;
     }
 
-    @And("user searches {string} in offers page to extract actual name there as well")
+    @And("^user searches (.+) in offers page to extract actual name there as well$")
     public void userSearchesInOffersPageToExtractActualNameThereAsWell(String shortName) throws InterruptedException, IOException {
         LandingPage landingPage = testContextSetup.pageObjectFactory.getLandingPage();
         OffersPage offersPage = testContextSetup.pageObjectFactory.getOffersPage();
