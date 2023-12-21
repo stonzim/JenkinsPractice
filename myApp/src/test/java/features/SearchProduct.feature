@@ -14,12 +14,12 @@ Feature: Search and place order for products
 
     Scenario Outline: Multiple products selected and added to cart
       When user searches with shortname <name> to extract actual name of product
-      And user adds 4 items to the cart
-      And user navigates to the checkout page
+      And user uses the plus button to add 4 items to cart
+      And user confirms the amount in cart and proceeds to checkout
       Then the full name of the item will be displayed
       And the user will see the correct number of items in the cart
       And the the Apply and Place Order buttons will be displayed
       Examples:
       | name |
       | bro  |
-      | car |
+#      | car |

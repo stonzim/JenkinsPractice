@@ -11,6 +11,9 @@ import java.io.IOException;
 public class LandingPageSteps {
     TestContextSetup testContextSetup;
     LandingPage landingPage;
+    SoftAssert softAssert = new SoftAssert();
+    int numberOfItemsSelected;
+
 
     public LandingPageSteps(TestContextSetup testContextSetup) {
         this.testContextSetup = testContextSetup;
@@ -19,7 +22,6 @@ public class LandingPageSteps {
 
     @Given("user is on GreenKart landing page")
     public void userIsOnGreenKartLandingPage() throws IOException {
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(
                 testContextSetup.testBase.WebDriverManager().getCurrentUrl(), landingPage.getURL()
         );
@@ -32,12 +34,21 @@ public class LandingPageSteps {
         testContextSetup.testVariable = landingPage.getProductName();
     }
 
-    @And("user adds {int} items to the cart")
-    public void userAddsItemsToTheCart(int numOfItems) {
-
+    @And("user uses the plus button to add {int} items to cart")
+    public void userUsesThePlusButtonToAddItemsToCart(int numOfItems) throws InterruptedException {
+        numberOfItemsSelected = numOfItems;
+        for(int i = 1; i < numOfItems; i++) {
+            landingPage.clickAddItemAmount();
+            Thread.sleep(200);
+        }
+        landingPage.clickAddToCart();
     }
 
-    @And("user navigates to the checkout page")
-    public void userNavigatesToTheCheckoutPage() {
+    @And("user confirms the amount in cart and proceeds to checkout")
+    public void userConfirmsTheAmountInCartAndProceedsToCheckout() {
+        landingPage.clickCartIcon();
+        softAssert.assertEquals(numberOfItemsSelected, landingPage.getItemAmount());
+        landingPage.clickCheckoutButton();
+        softAssert.assertAll();
     }
 }
