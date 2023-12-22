@@ -9,8 +9,8 @@ import org.testng.annotations.DataProvider;
         monochrome = true,
         plugin = {"pretty",
                 "rerun:target/failed_scenarios.txt",
-                "html:target/cucumber-report/cucumber.html",
-                "json:target/cucumber-report/cucumber.json",
+                "html:test-output/cucumber-report/cucumber.html",
+                "json:test-output/cucumber-report/cucumber.json",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
 public class TestNGRunner extends AbstractTestNGCucumberTests {
 

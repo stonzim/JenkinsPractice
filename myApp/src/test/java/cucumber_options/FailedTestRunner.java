@@ -8,8 +8,8 @@ import org.testng.annotations.DataProvider;
         glue = "step_definitions",
         monochrome = true,
         plugin = {"pretty",
-                "html:target/cucumber-report/cucumber.html",
-                "json:target/cucumber-report/cucumber.json",
+                "html:test-output/cucumber-report/cucumber.html",
+                "json:test-output/cucumber-report/cucumber.json",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
 public class FailedTestRunner extends AbstractTestNGCucumberTests {
 
