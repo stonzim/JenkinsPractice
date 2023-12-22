@@ -3,4 +3,7 @@
 /workspace.xml
 
 # Reports
-../ reports/cucumber.*
+../test-output
+
+# Target folder
+../target
