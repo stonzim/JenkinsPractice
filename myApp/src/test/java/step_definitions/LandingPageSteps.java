@@ -12,8 +12,6 @@ public class LandingPageSteps {
     TestContextSetup testContextSetup;
     LandingPage landingPage;
     SoftAssert softAssert = new SoftAssert();
-    int numberOfItemsSelected;
-
 
     public LandingPageSteps(TestContextSetup testContextSetup) {
         this.testContextSetup = testContextSetup;
@@ -31,12 +29,12 @@ public class LandingPageSteps {
     @When("^user searches with shortname (.+) to extract actual name of product$")
     public void user_searches_with_shortname_to_extract_actual_name_of_product(String shortName) throws InterruptedException {
         landingPage.searchFor(shortName);
-        testContextSetup.testVariable = landingPage.getProductName();
+        testContextSetup.testStringVariable = landingPage.getProductName();
     }
 
     @And("user uses the plus button to add {int} items to cart")
     public void userUsesThePlusButtonToAddItemsToCart(int numOfItems) throws InterruptedException {
-        numberOfItemsSelected = numOfItems;
+        testContextSetup.testIntVariable = numOfItems;
         for(int i = 1; i < numOfItems; i++) {
             landingPage.clickAddItemAmount();
             Thread.sleep(200);
@@ -45,9 +43,9 @@ public class LandingPageSteps {
     }
 
     @And("user confirms the amount in cart and proceeds to checkout")
-    public void userConfirmsTheAmountInCartAndProceedsToCheckout() {
+    public void userConfirmsTheAmountInCartAndProceedsToCheckout() throws InterruptedException {
         landingPage.clickCartIcon();
-        softAssert.assertEquals(numberOfItemsSelected, landingPage.getItemAmount());
+        softAssert.assertEquals(testContextSetup.testIntVariable, landingPage.getItemAmount());
         landingPage.clickCheckoutButton();
         softAssert.assertAll();
     }

@@ -46,8 +46,9 @@ public class LandingPage {
 
     public int getItemAmount() { return Integer.parseInt(driver.findElement(itemAmount_text).getText().split(" ")[0]);}
 
-    public void clickCheckoutButton() {
+    public void clickCheckoutButton() throws InterruptedException {
         driver.findElement(proceedToCheckout_button).click();
+        Thread.sleep(1000);
     }
 
 }

@@ -30,6 +30,6 @@ public class OffersPageSteps {
 
     @Then("the names extracted from both pages will match")
     public void theNamesExtractedFromBothPagesWillMatch() {
-        Assert.assertEquals(testContextSetup.testVariable, offersPageFullName);
+        Assert.assertEquals(testContextSetup.testStringVariable, offersPageFullName);
     }
 }

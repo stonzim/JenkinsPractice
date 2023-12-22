@@ -4,15 +4,14 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-        features = "src/test/java/features",
+        features = "@target/failed_scenarios.txt",
         glue = "step_definitions",
         monochrome = true,
         plugin = {"pretty",
-                "rerun:target/failed_scenarios.txt",
                 "html:target/cucumber-report/cucumber.html",
                 "json:target/cucumber-report/cucumber.json",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
-public class TestNGRunner extends AbstractTestNGCucumberTests {
+public class FailedTestRunner extends AbstractTestNGCucumberTests {
 
     @Override
     @DataProvider(parallel = true)

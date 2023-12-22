@@ -7,7 +7,8 @@ public class TestContextSetup {
     public TestBase testBase;
     public PageObjectFactory pageObjectFactory;
     public GeneralTestUtils generalTestUtils;
-    public String testVariable;
+    public String testStringVariable;
+    public int testIntVariable;
 
     public TestContextSetup() throws IOException {
         testBase = new TestBase();

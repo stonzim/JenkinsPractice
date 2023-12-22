@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 
 public class TestBase {
@@ -22,7 +23,7 @@ public class TestBase {
             if(properties.getProperty("browser").equalsIgnoreCase("chrome")) {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
-//                options.addArguments("--headless");
+                options.addArguments("--headless");
                 options.addArguments("--window-size=1920,1080");
                 options.addArguments("start-maximized");
                 options.addArguments("enable-automation");
@@ -30,6 +31,7 @@ public class TestBase {
 
                 driver = new ChromeDriver(options);
             }
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
             driver.get(properties.getProperty("QA-URL"));
         }
 
